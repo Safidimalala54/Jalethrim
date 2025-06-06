@@ -13,11 +13,6 @@ CREATE TABLE Produit (
 
 INSERT INTO Produit (reference, libelle, estDuJour, prix, quantiteEnStock)
 VALUES
-('REF001', 'T-shirt Gandalf gris', TRUE, 19.99, 50),
-('REF002', 'Cape noire longue', FALSE, 89.90, 10),
-('REF003', 'Baguette magique bois', FALSE, 34.50, 25),
-('REF004', 'Anneau en metal doree', TRUE, 59.00, 5),
-('REF005', 'Potion denergie 250ml', FALSE, 7.99, 100),
-('REF006', 'Carte Terre Milieu toile', FALSE, 29.90, 15),
-('REF007', 'Tasse "You shall not pass"', TRUE, 12.00, 60),
-('REF008', 'Cle ancienne dErebor', FALSE, 45.50, 8);
+('P001', 'Poudre de fee', FALSE, 10, 25),
+('P002', 'Chemise de mithril', FALSE, 100, 3),
+('P003', 'Grimoire magique', TRUE, 500, 10);
