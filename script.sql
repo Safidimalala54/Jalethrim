@@ -2,8 +2,8 @@ CREATE DATABASE Jalethrim;
 
 \c jalethrim
 
-CREATE TABLE Produit (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE produit (
+    id VARCHAR PRIMARY KEY,
     reference VARCHAR(300) NOT NULL,
     libelle VARCHAR(300) NOT NULL,
     estDuJour BOOLEAN NOT NULL,

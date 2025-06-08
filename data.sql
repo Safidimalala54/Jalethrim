@@ -1,5 +1,4 @@
-CREATE DATABASE gondor_chic;
-
+CREATE DATABASE jalethrim;
 
 CREATE TABLE produit ( 
   id VARCHAR PRIMARY KEY,
@@ -9,7 +8,6 @@ CREATE TABLE produit (
   estDuJour BOOLEAN,
   quantiteEnStock INT
 );
-
 
 INSERT INTO produit (
   id,
