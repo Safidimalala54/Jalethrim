@@ -19,17 +19,6 @@ CREATE TABLE produit (
   prenom VARCHAR(100) NOT NULL
 );
 
-insert into client (
-  id,
-  pseudo,
-  motDePasse,
-  nom,
-  prenom
-) values
-  ('c001', 'elrond', 'elrond123', 'Elrond', 'Half-elven'),
-  ('c002', 'galadriel', 'galadriel456', 'Galadriel', 'Lady of Light'),
-  ('c003', 'gandalf', 'gandalf789', 'Gandalf', 'the Grey');
-
 INSERT INTO produit (
   id,
   reference,

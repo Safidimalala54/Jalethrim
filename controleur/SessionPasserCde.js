@@ -1,7 +1,9 @@
-const { getProduitDuJour } = require("../metier/metierServices/ProduitService");
+const {
+  getProduitDuJour,
+} = require("../metier/metierServices/ProduitsManager");
 const {
   rechercherClientParPseudo,
-} = require("../metier/metierServices/ClientService");
+} = require("../metier/metierServices/ClientsManager");
 
 class SessionPasserCde {
   constructor() {
@@ -13,7 +15,7 @@ class SessionPasserCde {
   }
 
   async traiterAccesApplication() {
-    this.ecranCourant = "EcranProduitDuJour";
+    this.ecranCourant = "PageAcceuil";
     this.leProduitCourant = await getProduitDuJour();
     return {
       ecranCourant: this.ecranCourant,
@@ -25,7 +27,7 @@ class SessionPasserCde {
     const client = await rechercherClientParPseudo(pseudo, motDePasse);
     if (client) {
       this.leClientIdentifie = client;
-      this.ecranCourant = "EcranAccueilClient";
+      this.ecranCourant = "PageAcceuilPerso";
       return {
         ecranCourant: this.ecranCourant,
         client: this.leClientIdentifie,
