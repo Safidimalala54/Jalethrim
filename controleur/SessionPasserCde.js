@@ -7,59 +7,64 @@ const {
 
 class SessionPasserCde {
   constructor() {
-    this.ecranCourant = null;
-    this.leProduitCourant = null;
-    this.leClientIdentifie = null;
-    this.afficherProduitDuJour = this.afficherProduitDuJour.bind(this);
+    this.traiterAccesApplication = this.traiterAccesApplication.bind(this);
     this.traiterIdentification = this.traiterIdentification.bind(this);
   }
 
-  async traiterAccesApplication() {
-    this.ecranCourant = "PageAcceuil";
-    this.leProduitCourant = await rechercherProduitDuJour();
-    return {
-      ecranCourant: this.ecranCourant,
-      produit: this.leProduitCourant,
-    };
-  }
-
-  async traiterIdentificationLogic(pseudo, motDePasse) {
-    const client = await rechercherClientParPseudo(pseudo, motDePasse);
-    if (client) {
-      this.leClientIdentifie = client;
-      this.ecranCourant = "PageAcceuilPerso";
-      return {
-        ecranCourant: this.ecranCourant,
-        client: this.leClientIdentifie,
-        produit: this.leProduitCourant,
-      };
-    } else {
-      this.ecranCourant = "EcranErreurAuthentification";
-      return {
-        ecranCourant: this.ecranCourant,
-      };
-    }
-  }
-
-  async afficherProduitDuJour(req, res) {
+  async traiterAccesApplication(req, res) {
     try {
-      const resultat = await this.traiterAccesApplication();
-      res.json(resultat);
-    } catch (err) {
-      res.status(500).json({ message: "Erreur serveur", error: err.message });
+      const produit = await rechercherProduitDuJour();
+
+      if (!produit || produit.length === 0) {
+        return res.status(404).json({
+          message: "Aucun produit du jour trouvé",
+        });
+      }
+
+      res.json({
+        ecranCourant: "PageAcceuil",
+        produit: produit[0],
+      });
+    } catch (error) {
+      console.error("Erreur traiterAccesApplication:", error);
+      res.status(500).json({
+        message: "Erreur lors de la récupération du produit du jour",
+        error: error.message,
+      });
     }
   }
 
   async traiterIdentification(req, res) {
-    const { pseudo, motDePasse } = req.body;
     try {
-      const resultat = await this.traiterIdentificationLogic(
-        pseudo,
-        motDePasse
-      );
-      res.json(resultat);
-    } catch (err) {
-      res.status(500).json({ message: "Erreur serveur", error: err.message });
+      const { pseudo, motDePasse } = req.body;
+
+      if (!pseudo || !motDePasse) {
+        return res.status(400).json({
+          message: "Pseudo et mot de passe requis",
+        });
+      }
+
+      const client = await rechercherClientParPseudo(pseudo, motDePasse);
+
+      if (!client) {
+        return res.json({
+          ecranCourant: "EcranErreurAuthentification",
+        });
+      }
+
+      const produit = await rechercherProduitDuJour();
+
+      res.json({
+        ecranCourant: "PageAcceuilPerso",
+        client: client,
+        produit: produit[0],
+      });
+    } catch (error) {
+      console.error("Erreur traiterIdentification:", error);
+      res.status(500).json({
+        message: "Erreur lors de l'identification",
+        error: error.message,
+      });
     }
   }
 }
