@@ -1,7 +1,7 @@
 const pool = require("../../config/db");
 const Produit = require("../modele/Produit");
 
-async function getProduitDuJour() {
+async function rechercherProduitDuJour() {
   const res = await pool.query("SELECT * FROM produit WHERE estDuJour = TRUE");
   return res.rows.map(
     (p) =>
@@ -16,4 +16,4 @@ async function getProduitDuJour() {
   );
 }
 
-module.exports = { getProduitDuJour };
+module.exports = { rechercherProduitDuJour };
