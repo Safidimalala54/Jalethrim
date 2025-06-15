@@ -1,5 +1,7 @@
 CREATE DATABASE jalethrim;
 
+\c jalethrim;
+
 CREATE TABLE produit ( 
   id VARCHAR PRIMARY KEY,
   reference VARCHAR NOT NULL,
@@ -10,7 +12,7 @@ CREATE TABLE produit (
 );
 
  CREATE TABLE client (
-  numero VARCHAR(20) PRIMARY KEY,
+  id VARCHAR(20) PRIMARY KEY,
   pseudo VARCHAR(100) NOT NULL UNIQUE,
   motDePasse VARCHAR(100) NOT NULL,
   nom VARCHAR(100) NOT NULL,
@@ -18,7 +20,7 @@ CREATE TABLE produit (
 );
 
 insert into client (
-  numero,
+  id,
   pseudo,
   motDePasse,
   nom,
