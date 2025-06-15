@@ -1,5 +1,5 @@
 const {
-  getProduitDuJour,
+  rechercheProduitDuJour,
 } = require("../metier/metierServices/ProduitsManager");
 const {
   rechercherClientParPseudo,
@@ -16,7 +16,7 @@ class SessionPasserCde {
 
   async traiterAccesApplication() {
     this.ecranCourant = "PageAcceuil";
-    this.leProduitCourant = await getProduitDuJour();
+    this.leProduitCourant = await rechercheProduitDuJour();
     return {
       ecranCourant: this.ecranCourant,
       produit: this.leProduitCourant,
