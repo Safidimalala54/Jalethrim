@@ -11,6 +11,6 @@ async function rechercherClientParPseudo(pseudo, motDePasse) {
     return null;
   }
   const c = res.rows[0];
-  return new Client(c.numero, c.pseudo, c.nom, c.prenom);
+  return new Client(c.id, c.pseudo, c.motdepasse, c.nom, c.prenom);
 }
 module.exports = { rechercherClientParPseudo };

@@ -11,12 +11,12 @@ CREATE TABLE produit (
   quantiteEnStock INT
 );
 
- CREATE TABLE client (
+CREATE TABLE client (
   id VARCHAR(20) PRIMARY KEY,
-  pseudo VARCHAR(100) NOT NULL UNIQUE,
-  motDePasse VARCHAR(100) NOT NULL,
   nom VARCHAR(100) NOT NULL,
-  prenom VARCHAR(100) NOT NULL
+  prenom VARCHAR(100) NOT NULL,
+  motDePasse VARCHAR(100) NOT NULL,
+  pseudo VARCHAR(100) NOT NULL UNIQUE
 );
 
 INSERT INTO produit (
@@ -32,3 +32,14 @@ INSERT INTO produit (
   ('p002', 'P002', 'Chemise de mithril', 100.0, false, 3),
   ('p003', 'P003', 'Grimoire magique', 500.0, true, 10);
 
+INSERT INTO client (
+  id,
+  nom,
+  prenom,
+  motDePasse,
+  pseudo
+) VALUES
+
+('c001','Sacquet ', 'Frodon', 'anneauSecret123', 'frodonlefurtif'),
+('c002','Vertefeuille', 'Legoli', 'flecheLune2025', 'archeElfique'),
+('c003','Eorlingas', 'Théoden', 'chevalBlanc77', 'roiDuRohan');
